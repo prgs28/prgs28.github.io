@@ -319,10 +319,23 @@ const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyQsGhAGgTAUyRVmD19lz
   });
 })();
 
-/* ── KPI flip (click/tap for touch devices) ── */
+/* ── KPI flip: hover previews, click locks/unlocks ── */
 document.querySelectorAll('.kpi-card').forEach(card => {
+  const inner = card.querySelector('.kpi-inner');
+  let locked = false;
+
+  // Hover: flip on enter, unflip on leave (unless click-locked)
+  card.addEventListener('mouseenter', () => {
+    if (!locked) inner.classList.add('flipped');
+  });
+  card.addEventListener('mouseleave', () => {
+    if (!locked) inner.classList.remove('flipped');
+  });
+
+  // Click: toggle lock (stays flipped even when mouse leaves)
   card.addEventListener('click', () => {
-    card.querySelector('.kpi-inner').classList.toggle('flipped');
+    locked = !locked;
+    inner.classList.toggle('flipped', locked);
   });
 });
 

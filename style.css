@@ -137,7 +137,7 @@ h1{font-size:clamp(2.8rem,6.5vw,5rem);font-weight:800;line-height:1.03;margin-bo
 /* Flip cards */
 .kpi-card{height:248px;perspective:900px;cursor:pointer;border-radius:var(--r);transition-delay:var(--d,0s)}
 .kpi-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .58s cubic-bezier(.4,0,.2,1)}
-.kpi-inner.flipped,.kpi-card:hover .kpi-inner{transform:rotateY(180deg)}
+.kpi-inner.flipped{transform:rotateY(180deg)}
 .kpi-front,.kpi-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--r);padding:26px 24px;display:flex;flex-direction:column;border:1px solid var(--border)}
 .kpi-front{background:var(--bg3)}
 .kpi-back{transform:rotateY(180deg);background:linear-gradient(135deg,rgba(0,212,170,.1),rgba(14,165,233,.07));border-color:rgba(0,212,170,.35);justify-content:center;gap:10px;padding:24px 22px}
