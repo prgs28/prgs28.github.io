@@ -288,6 +288,10 @@ footer p,footer span{font-size:.8rem;color:var(--muted)}
   .social-sidebar{display:none}
   .scroll-hint{display:none}
   .impact-grid{grid-template-columns:1fr 1fr}
+  .section-title{display:block;text-align:center}
+  .section-title::after{left:50%;transform:translateX(-50%)}
+  .impact-header{text-align:center}
+  .impact-sub{text-align:center}
   /* Experience: horizontal tab selector on mobile */
   .exp-wrap{grid-template-columns:1fr;gap:14px}
   .exp-sidebar{flex-direction:row;gap:0}
