@@ -1,5 +1,6 @@
 /* ── Reset ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:hidden}
 
 :root {
   --bg:      #07090f;
@@ -90,7 +91,7 @@ section,nav,footer,.social-sidebar,.back-top{position:relative;z-index:1}
 .section-title::after{content:'';position:absolute;bottom:-10px;left:0;width:36px;height:3px;background:linear-gradient(to right,var(--accent),var(--blue));border-radius:2px}
 
 /* ── Hero ── */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px}
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px 0 60px;overflow:hidden}
 .hero-glow{position:absolute;border-radius:50%;pointer-events:none}
 .g1{width:680px;height:680px;background:radial-gradient(circle,rgba(0,212,170,.055) 0%,transparent 70%);top:-180px;left:-180px;animation:gf 9s ease-in-out infinite alternate}
 .g2{width:520px;height:520px;background:radial-gradient(circle,rgba(14,165,233,.045) 0%,transparent 70%);bottom:-80px;right:60px;animation:gf 11s ease-in-out infinite alternate-reverse}
