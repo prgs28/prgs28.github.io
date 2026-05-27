@@ -168,8 +168,6 @@ h1{font-size:clamp(2.8rem,6.5vw,5rem);font-weight:800;line-height:1.03;margin-bo
 .pill-row{display:flex;flex-wrap:wrap;gap:7px}
 .pill{background:var(--bg3);border:1px solid var(--border);border-radius:999px;padding:5px 13px;font-size:.8rem;color:var(--muted);transition:border-color .2s,color .2s,background .2s,transform .15s,box-shadow .2s;cursor:default}
 .pill:hover{border-color:var(--accent);color:var(--text);background:rgba(0,212,170,.07);transform:translateY(-2px);box-shadow:0 3px 10px rgba(0,212,170,.12)}
-.pill-hot{border-color:var(--border2);color:var(--text);background:rgba(0,212,170,.06)}
-.pill-hot:hover{box-shadow:0 3px 14px rgba(0,212,170,.2)}
 
 /* ── Experience split-panel ── */
 #experience{padding:var(--sp) 0;background:var(--bg2)}
