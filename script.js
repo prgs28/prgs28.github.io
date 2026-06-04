@@ -267,10 +267,6 @@ document.querySelectorAll('.magnetic').forEach(btn => {
       Execute as: Me | Who has access: Anyone → Deploy → Copy the URL
    4. Paste that URL below replacing YOUR_SCRIPT_URL_HERE
 ══════════════════════════════════════════ */
-const GFORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScU8ZLm0TICG6JEq_h9_i_CU4ZvSZMD7kXS6hYdAAaqd5xetw/formResponse';
-const GFORM_NAME    = 'entry.1691537470';
-const GFORM_MESSAGE = 'entry.2096371744';
-
 (function () {
   const form   = document.getElementById('contact-form');
   const btn    = document.getElementById('cf-btn');
@@ -290,23 +286,27 @@ const GFORM_MESSAGE = 'entry.2096371744';
     status.textContent = '';
     status.className = 'cform-status';
 
-    const name    = form.querySelector('[name="name"]').value.trim();
-    const email   = form.querySelector('[name="email"]').value.trim();
-    const message = form.querySelector('[name="message"]').value.trim();
-
-    const payload = new URLSearchParams({
-      [GFORM_NAME]:    name,
-      [GFORM_MESSAGE]: `Email: ${email}\n\n${message}`,
-      fvv:         '1',
-      pageHistory: '0',
-      fbzx:        Math.random().toString(36)
-    });
+    const payload = {
+      access_key: 'b4cd51c3-5761-48f9-a167-cacccbb7e2e5',
+      name:    form.querySelector('[name="name"]').value.trim(),
+      email:   form.querySelector('[name="email"]').value.trim(),
+      message: form.querySelector('[name="message"]').value.trim()
+    };
 
     try {
-      await fetch(GFORM_URL, { method: 'POST', mode: 'no-cors', body: payload });
-      status.textContent = '✓ Message received! I\'ll get back to you soon.';
-      status.className = 'cform-status ok';
-      form.reset();
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        status.textContent = '✓ Message received! I\'ll get back to you soon.';
+        status.className = 'cform-status ok';
+        form.reset();
+      } else {
+        throw new Error(data.message);
+      }
     } catch {
       status.textContent = '✗ Something went wrong. Please email prgs28.1994@gmail.com directly.';
       status.className = 'cform-status err';
