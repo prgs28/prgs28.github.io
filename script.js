@@ -296,7 +296,10 @@ const GFORM_MESSAGE = 'entry.2096371744';
 
     const payload = new URLSearchParams({
       [GFORM_NAME]:    name,
-      [GFORM_MESSAGE]: `Email: ${email}\n\n${message}`
+      [GFORM_MESSAGE]: `Email: ${email}\n\n${message}`,
+      fvv:         '1',
+      pageHistory: '0',
+      fbzx:        Math.random().toString(36)
     });
 
     try {
