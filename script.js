@@ -267,7 +267,9 @@ document.querySelectorAll('.magnetic').forEach(btn => {
       Execute as: Me | Who has access: Anyone → Deploy → Copy the URL
    4. Paste that URL below replacing YOUR_SCRIPT_URL_HERE
 ══════════════════════════════════════════ */
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyQsGhAGgTAUyRVmD19lze0BdDF4VvrddjmQIJqFF_AqR3Z_uo0dj1doTLImfKaZDJEJQ/exec';
+const GFORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScU8ZLm0TICG6JEq_h9_i_CU4ZvSZMD7kXS6hYdAAaqd5xetw/formResponse';
+const GFORM_NAME    = 'entry.1691537470';
+const GFORM_MESSAGE = 'entry.2096371744';
 
 (function () {
   const form   = document.getElementById('contact-form');
@@ -282,29 +284,23 @@ const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyQsGhAGgTAUyRVmD19lz
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    // Guard: URL not configured yet
-    if (SHEET_URL === 'YOUR_SCRIPT_URL_HERE') {
-      status.textContent = '⚠ Form not connected yet — reach out at prgs28.1994@gmail.com';
-      status.className = 'cform-status err';
-      return;
-    }
-
     btn.disabled = true;
     spinner.style.display = 'inline-block';
     btnTxt.textContent = 'Sending…';
     status.textContent = '';
     status.className = 'cform-status';
 
+    const name    = form.querySelector('[name="name"]').value.trim();
+    const email   = form.querySelector('[name="email"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
+
     const payload = new URLSearchParams({
-      name:      form.querySelector('[name="name"]').value.trim(),
-      email:     form.querySelector('[name="email"]').value.trim(),
-      message:   form.querySelector('[name="message"]').value.trim(),
-      timestamp: new Date().toLocaleString()
+      [GFORM_NAME]:    name,
+      [GFORM_MESSAGE]: `Email: ${email}\n\n${message}`
     });
 
     try {
-      await fetch(SHEET_URL, { method: 'POST', mode: 'no-cors', body: payload,
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' } });
+      await fetch(GFORM_URL, { method: 'POST', mode: 'no-cors', body: payload });
       status.textContent = '✓ Message received! I\'ll get back to you soon.';
       status.className = 'cform-status ok';
       form.reset();
